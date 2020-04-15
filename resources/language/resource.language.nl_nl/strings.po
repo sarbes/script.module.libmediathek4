@@ -1,0 +1,140 @@
+# KODI Media Center language file
+# Addon Name: libmediathek3
+# Addon id: script.module.libmediathek3
+# Addon version: 1.3.3
+# Addon Provider: membrane
+msgid ""
+msgstr ""
+"Project-Id-Version: XBMC Main\n"
+
+msgctxt "#32000"
+msgid "This month"
+msgstr "Deze maand"
+
+msgctxt "#32001"
+msgid "January"
+msgstr "Januari"
+
+msgctxt "#32002"
+msgid "February"
+msgstr "Februari"
+
+msgctxt "#32003"
+msgid "March"
+msgstr "Maart"
+
+msgctxt "#32004"
+msgid "April"
+msgstr "April"
+
+msgctxt "#32005"
+msgid "May"
+msgstr "Mei"
+
+msgctxt "#32006"
+msgid "June"
+msgstr "Juni"
+
+msgctxt "#32007"
+msgid "July"
+msgstr "Juli"
+
+msgctxt "#32008"
+msgid "August"
+msgstr "August"
+
+msgctxt "#32009"
+msgid "September"
+msgstr "September"
+
+msgctxt "#32010"
+msgid "October"
+msgstr "Oktober"
+
+msgctxt "#32011"
+msgid "November"
+msgstr "November"
+
+msgctxt "#32012"
+msgid "December"
+msgstr "December"
+
+msgctxt "#32013"
+msgid "Sunday"
+msgstr "Zondag"
+
+msgctxt "#32014"
+msgid "Monday"
+msgstr "Maandag"
+
+msgctxt "#32015"
+msgid "Tuesday"
+msgstr "Dinsdag"
+
+msgctxt "#32016"
+msgid "Wednesday"
+msgstr "Woensdag"
+
+msgctxt "#32017"
+msgid "Thursday"
+msgstr "Donderdag"
+
+msgctxt "#32018"
+msgid "Friday"
+msgstr "Vrijdag"
+
+msgctxt "#32019"
+msgid "Saturday"
+msgstr "Zaterdag"
+
+msgctxt "#32020"
+msgid "Today"
+msgstr "Vandaag"
+
+msgctxt "#32021"
+msgid "Yesterday"
+msgstr "Gister"
+
+msgctxt "#32022"
+msgid "Choose date"
+msgstr "Kies datum"
+
+msgctxt "#32030"
+msgid "New"
+msgstr "Nieuw"
+
+msgctxt "#32031"
+msgid "Most viewed"
+msgstr "Meest bekeken"
+
+msgctxt "#32132"
+msgid "Shows by A-Z"
+msgstr "Programma's van A tot Z"
+
+msgctxt "#32133"
+msgid "Shows by date"
+msgstr "Programma's naar datum"
+
+msgctxt "#32134"
+msgid "Rubrics"
+msgstr "Rubrieken"
+
+msgctxt "#32135"
+msgid "Topics"
+msgstr "Onderwerpen"
+
+msgctxt "#32139"
+msgid "Search"
+msgstr "Zoeken"
+
+msgctxt "#32140"
+msgid "More Entries"
+msgstr "Meer items"
+
+msgctxt "#32141"
+msgid "Archive"
+msgstr "Archief"
+
+msgctxt "#32143"
+msgid "Live"
+msgstr "Live"
