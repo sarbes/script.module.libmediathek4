@@ -24,6 +24,7 @@ class lm4:
 		self.modes = {
 			'libMediathekListDate':self.libMediathekListDate,
 			'libMediathekListLetters':self.libMediathekListLetters,
+			'libMediathekSearch':self.libMediathekSearch,
 		}	
 		self.playbackModes = {
 			'libMediathekPlayDirect':self.libMediathekPlayDirect
@@ -279,6 +280,13 @@ class lm4:
 			self.addEntries(l)
 			self.endOfDirectory()	
 
+			
+	def libMediathekSearch(self):
+		sString = xbmcgui.Dialog().input(self.translation(32139))
+		if sString == '':
+			xbmcplugin.endOfDirectory(int(sys.argv[1]),succeeded=False)
+			return
+		return self.searchModes[self.params['searchMode']](urllib.parse.quote(sString))
 			
 	def libMediathekListLetters(self):
 		import string
