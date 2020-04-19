@@ -21,8 +21,13 @@ import xbmcplugin
 
 class lm4:
 	def __init__(self):
-		self.modes = {}	
-		self.playbackModes = {}
+		self.modes = {
+			'libMediathekListDate':self.libMediathekListDate,
+			'libMediathekListLetters':self.libMediathekListLetters,
+		}	
+		self.playbackModes = {
+			'libMediathekPlayDirect':self.libMediathekPlayDirect
+		}
 		self.defaultMode = ''
 
 		self.params = {}
@@ -176,10 +181,14 @@ class lm4:
 		xbmcplugin.addDirectoryItems(int(sys.argv[1]), lists)
 
 	def play(self,d,external=False):
-		#listitem = xbmcgui.ListItem(path=url)
+		if len(d['media']) == 0:#TODO: add error msg
+			listitem = xbmcgui.ListItem(path='')
+			pluginhandle = int(sys.argv[1])
+			xbmcplugin.setResolvedUrl(pluginhandle, False, listitem)
+			return
+
 		listitem,url = self._chooseBitrate(d['media'])	
 				
-		#i = 0
 		if 'subtitle' in d:
 			subs = []
 			for subtitle in d['subtitle']:
@@ -271,7 +280,60 @@ class lm4:
 			self.endOfDirectory()	
 
 			
-	
+	def libMediathekListLetters(self):
+		import string
+		result = {'items':[]}
+		ignore = self.params.get('ignore','').split(',')
+		letters = ['#']
+		letters.extend(list(string.ascii_lowercase))
+		for letter in letters:
+			if not letter in ignore:
+				d = {'params':json.loads(self.params['subParams']), 'metadata':{}, 'type':'dir'}
+				d['metadata']['name'] = letter.upper()
+				d['params']['letter'] = letter
+				result['items'].append(d)
+		return result
+			
+	def libMediathekListDate(self):
+		result = {'items':[]}
+		weekdayDict = { 
+			'0': self.translation(32013),#Sonntag
+			'1': self.translation(32014),#Montag
+			'2': self.translation(32015),#Dienstag
+			'3': self.translation(32016),#Mittwoch
+			'4': self.translation(32017),#Donnerstag
+			'5': self.translation(32018),#Freitag
+			'6': self.translation(32019),#Samstag
+			}
+		
+		i = 0
+		while i <= 6:
+			day = date.today() - timedelta(i)
+		
+			d = {'params':json.loads(self.params['subParams']), 'metadata':{}, 'type':'dir'}
+			d['params']['datum'] = str(i)
+			d['params']['yyyymmdd'] = self._calcyyyymmdd(i)
+			d['params']['ddmmyyyy'] = self._calcddmmyyyy(i)
+			
+			if i == 0:
+				d['metadata']['name'] = self.translation(32020)
+			elif i == 1:
+				d['metadata']['name'] = self.translation(32021)
+			else:
+				d['metadata']['name'] = weekdayDict[day.strftime("%w")]
+
+			result['items'].append(d)
+			i += 1
+
+		#if self.params.get('dateChooser',False) == True:
+		#	d = {'params':{'mode': mode}, 'metadata':{'name': self.translation(32022)}, 'type':'dir'}
+		#	if channel: d['params']['channel'] = channel
+		#	result['items'].append(d)
+		return result
+
+	def libMediathekPlayDirect(self):
+		return {'media':[{'url':self.params['url'], 'stream':self.params['stream']}]}
+
 	def populateDirDate(self,mode,channel=False,dateChooser=False):
 		weekdayDict = { 
 			'0': self.translation(32013),#Sonntag
@@ -301,12 +363,16 @@ class lm4:
 			result['items'].append(d)
 			i += 1
 
-		if dateChooser and False:#disabled for now
-			d = {'params':{'mode': mode}, 'metadata':{'name': self.translation(32022)}, 'type':'dir'}
-			if channel: d['params']['channel'] = channel
-			result['items'].append(d)
+		#if self.params.get('dateChooser',False) == True:
+		#	d = {'params':{'mode': mode}, 'metadata':{'name': self.translation(32022)}, 'type':'dir'}
+		#	if channel: d['params']['channel'] = channel
+		#	result['items'].append(d)
 		return result
 
 	def _calcyyyymmdd(self,d):
 		day = date.today() - timedelta(d)
 		return day.strftime('%Y-%m-%d')
+
+	def _calcddmmyyyy(self,d):
+		day = date.today() - timedelta(d)
+		return day.strftime('%d-%m-%Y')
