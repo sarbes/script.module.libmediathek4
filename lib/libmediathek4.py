@@ -250,7 +250,7 @@ class lm4:
 				streamType = 'AUDIO'
 		listitem = xbmcgui.ListItem(path=url)
 		if streamType == 'DASH':
-			listitem.setProperty('inputstreamaddon', 'inputstream.adaptive')
+			listitem.setProperty('inputstream', 'inputstream.adaptive')
 			listitem.setProperty('inputstream.adaptive.manifest_type', 'mpd')
 			if 'licenseserverurl' in item:
 				listitem.setProperty('inputstream.adaptive.license_type', 'com.widevine.alpha')
@@ -260,7 +260,7 @@ class lm4:
 			listitem.setContentLookup(False)
 		elif streamType == 'HLS':
 			listitem.setMimeType('application/vnd.apple.mpegurl')
-			listitem.setProperty('inputstreamaddon', 'inputstream.adaptive')
+			listitem.setProperty('inputstream', 'inputstream.adaptive')
 			listitem.setProperty('inputstream.adaptive.manifest_type', 'hls')
 			listitem.setContentLookup(False)
 		#elif streamType == 'MP4':
