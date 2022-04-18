@@ -101,7 +101,7 @@ class lm4:
 				"genre": 				metadata.get('genres',''),
 				"year": 				metadata.get('year',''),
 				"premiered": 		metadata.get('premiered',''),
-				"premiered": 		metadata.get('originaltitle',''),
+				"originaltitle": 		metadata.get('originaltitle',''),
 				}
 			if 'art' in metadata:
 				liz.setArt(metadata['art'])
