@@ -135,7 +135,7 @@ class lm4:
 					
 			ok=True
 
-			if item['type'] in ['audio','songs']:
+			if item.get('type',None) in ['audio','songs']:
 				liz.setInfo( type="music", infoLabels=ilabels)
 			else:
 				liz.setInfo( type="Video", infoLabels=ilabels)
